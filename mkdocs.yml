@@ -1,1 +1,6 @@
 site_name: Django SRE
+theme:
+  name: material
+  palette: 
+    primary: light blue
+  
