@@ -1,6 +1,26 @@
 site_name: Django SRE
+repo_url: https://github.com/rbarrimond/django-sre
 theme:
   name: material
   palette: 
-    primary: light blue
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  icon:
+    logo: material/web-check
+
   
