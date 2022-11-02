@@ -4,6 +4,30 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // Django development server
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/django_sre/manage.py",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        // Code testing
+        {
+            "name": "Python: PyTest",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "-vv"
+            ],
+            "justMyCode": true
+        },
+        // Documentation website
         {
             "name": "Python: MkDocs",
             "type": "python",
@@ -14,17 +38,6 @@
                 "--dev-addr",
                 "localhost:8001"
             ],
-            "justMyCode": true
-        },
-        {
-            "name": "Python: Django",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/src/django_sre/manage.py",
-            "args": [
-                "runserver"
-            ],
-            "django": true,
             "justMyCode": true
         }
     ]
