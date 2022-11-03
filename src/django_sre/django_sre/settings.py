@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os, logging
+
+logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z6+0$+kq_9x0mr&kt8t4_o!_*@f7o=^kynl&x$_28qk4779ul_'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-z6+0$+kq_9x0mr&kt8t4_o!_*@f7o=^kynl&x$_28qk4779ul_')
+if SECRET_KEY.startswith('django-insecure'):
+    logger.warning(f"Running with insecure key: {SECRET_KEY}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False'.casefold()) == 'True'.casefold()
+if DEBUG:
+    logger.warning(f'Running with DEBUG == True')
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = list( map( lambda x: x.strip(), 
+                            os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost, 127.0.0.1').split(',')))
 
 
 # Application definition
