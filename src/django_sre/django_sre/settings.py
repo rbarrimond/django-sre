@@ -28,7 +28,7 @@ if SECRET_KEY.startswith('django-insecure'):
     logger.warning(f"Running with insecure key: {SECRET_KEY}")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'False'.casefold()) == 'True'.casefold()
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').casefold() == 'True'.casefold()
 if DEBUG:
     logger.warning(f'Running with DEBUG == True')
 
