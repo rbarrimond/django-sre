@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_prometheus'
+    'django_prometheus',
+    'health.apps.HealthConfig'
 ]
 
 MIDDLEWARE = [
@@ -142,7 +143,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'format': '[{asctime}] {levelname} {process:d}:{thread:d} {module}.{funcName} - {message}',
             'style': '{',
         },
         'simple': {
@@ -157,13 +158,13 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
         'file': {
-            'level': 'INFO',
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'filters': ['require_debug_true'],
             'formatter': 'verbose',
             'class': 'logging.handlers.RotatingFileHandler',
