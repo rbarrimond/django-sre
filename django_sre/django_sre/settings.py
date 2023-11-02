@@ -30,7 +30,7 @@ if SECRET_KEY.startswith('django-insecure'):
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').casefold() == 'True'.casefold()
 if DEBUG:
-    logger.warning(f'Running with DEBUG == True')
+    logger.warning('Running with DEBUG == True')
 
 
 ALLOWED_HOSTS = list( map( lambda x: x.strip(), 
@@ -143,7 +143,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '[{asctime}] {levelname} {process:d}:{thread:d} {module}.{funcName} - {message}',
+            'format': '[{asctime}] {levelname} {process:d}:{thread:d} {name}.{funcName} - {message}',
             'style': '{',
         },
         'simple': {
