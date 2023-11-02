@@ -6,7 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 # Retrieve the Django logger
-logger = logging.getLogger('django')
+logger = logging.getLogger('django.' + __name__)
 
 # Create your views here.
 
